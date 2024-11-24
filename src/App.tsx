@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Container, CssBaseline, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { useState } from 'react';
+import ExperimentViz from './components/ExperimentViz';
 
 const theme = createTheme({
   palette: {
@@ -44,13 +45,14 @@ function DivFilling({ color, children }) {
 // Slides
 const Slide1 = () => (
   <Container>
-    <Typography variant='h1'>Welcome</Typography>
+    <ExperimentViz/>
   </Container>
 );
 
 const Slide2 = () => (
   <Container>
     <Typography variant='h1'>Background</Typography>
+    <Typography variant='body1'>This slide will container contains the background information about our story.</Typography>
   </Container>
 );
 
@@ -79,7 +81,7 @@ function Layout() {
 
         {/* Main Content */}
         <Grid item xs={10}>
-          <Typography>{steps[step] || 'End of Steps'}</Typography>
+          {/* <Typography>{steps[step] || 'End of Steps'}</Typography> */}
           { slides[step] }
         </Grid>
 
