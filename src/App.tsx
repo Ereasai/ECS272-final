@@ -1,4 +1,4 @@
-import Example from './components/Example'
+import Example from './components/GeographyMap'
 import Notes from './components/Notes'
 import { NotesWithReducer, CountProvider } from './components/NotesWithReducer';
 import Grid from '@mui/material/Grid';
