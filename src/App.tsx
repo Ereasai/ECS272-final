@@ -7,6 +7,7 @@ import { grey } from '@mui/material/colors';
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Container, CssBaseline, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { useState } from 'react';
 import ExperimentViz from './components/ExperimentViz';
+import GeographyMap from './components/GeographyMap';
 
 const theme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ function DivFilling({ color, children }) {
 // Slides
 const Slide1 = () => (
   <Container>
+    <GeographyMap/>
     <ExperimentViz/>
   </Container>
 );
