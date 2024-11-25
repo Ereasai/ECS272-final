@@ -43,9 +43,13 @@ function DivFilling({ color, children }) {
 
 
 // Slides
-const Slide1 = () => (
+const EmptySlide = () => (
+  <div>Empty Slide</div>
+)
+
+const Slide1 = ({slide} : {slide: number}) => (
   <Container>
-    <ExperimentViz/>
+    <ExperimentViz slide={slide} />
   </Container>
 );
 
@@ -59,10 +63,14 @@ const Slide2 = () => (
 
 
 const steps = [
-  'Welcome', 
-  'Background',
-  'Experiment',
-  'Conclusion',
+  'Sugar-Sweetened Beverage Consumption',
+  'Sugar-Sweetened Beverage Consumption in California Residents',
+  'Revenue of Coca-Cola Company',
+  'Sugar Content',
+  'Experiment: Background',
+  'Experiment: Result',
+  'Experiment: Histogram',
+  // 'Conclusion'
 ];
 
 // Main Layout
@@ -73,16 +81,27 @@ function Layout() {
   const decrementStep = () => { setStep(prev => Math.max((prev - 1), 0)) };
   const incrementStep = () => { setStep(prev => Math.min((prev + 1), steps.length)) };
 
-  const slides = [<Slide1 />, <Slide2 />, <Example />]
+  const slides = [
+    <EmptySlide />, 
+    <EmptySlide />, 
+    <EmptySlide />, 
+    <EmptySlide />,
+    <Slide1 slide={step - 4}/>,
+  ]
+
+  const stepLogic = (step: number) : number => {
+    if (step > 3) return 4;
+    return step;
+  };
 
   return (
-    <Container>
+
       <Grid container direction="column" spacing={0} style={{ height: "100vh" }}>
 
         {/* Main Content */}
         <Grid item xs={10}>
           {/* <Typography>{steps[step] || 'End of Steps'}</Typography> */}
-          { slides[step] }
+          { slides[stepLogic(step)] }
         </Grid>
 
         {/* Controls */}
@@ -110,7 +129,6 @@ function Layout() {
         </Grid>
       </Grid>
 
-    </Container>
   );
 }
 
