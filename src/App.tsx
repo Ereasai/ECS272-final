@@ -8,6 +8,7 @@ import { Box, Button, Card, CardActionArea, CardActions, CardContent, Container,
 import { useState } from 'react';
 import ExperimentViz from './components/ExperimentViz';
 import GeographyMap from './components/GeographyMap';
+import RevenueChart from './components/RevenueChart';
 
 const theme = createTheme({
   palette: {
@@ -31,7 +32,7 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
 });
-
+// @ts-ignore
 function DivFilling({ color, children }) {
   const divStyle = {
     width: "100%",
