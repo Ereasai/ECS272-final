@@ -35,7 +35,9 @@ export default function Example() {
         setData(csvData);
         const lookup = new Map(csvData.map(d => [d.state, d.value]));
         setLookup(lookup);
+        // @ts-ignore
         const states = topojson.feature(usStates, usStates.objects.states);
+        // @ts-ignore
         setStates(states);
       } catch (error) {
         console.error('Error loading CSV:', error);
