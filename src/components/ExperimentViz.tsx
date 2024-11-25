@@ -156,13 +156,13 @@ export default function ExperimentViz({ slide } : { slide: number }) {
           .style('fill', d => d.sex === 'male' ? '#486E9E' : '#D84B59')
           .on('click', (e, d) => { console.log(d); })
           .call(enter => enter.transition().duration(750)
-            .attr('r', d => ageToR(d.age)) // Transition to final radius
+            .attr('r', d => ageToR(d.age))
           ),
         update => update.call(update => update.transition().duration(3000)
           .attr('cx', (d, i) => {
             if (slide === 0) return xDemographic(i % cols);
             if (slide === 1) return xSetup[d.condition](d.conditionIndex % (cols));
-            if (slide === 2) return xHistogram(d.DV_calories_consumed);
+            if (slide === 2) return xHistogram(d.calories);
           })
           .attr('cy', (d, i) => {
             if (slide === 0) return yDemographic(Math.floor(i / cols));

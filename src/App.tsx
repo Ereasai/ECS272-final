@@ -48,10 +48,13 @@ const EmptySlide = () => (
   <div>Empty Slide</div>
 )
 
-const Slide1 = ({slide} : {slide: number}) => (
+const Slide1 = () => (
+  <GeographyMap />
+)
+
+const Slide5 = ({slide} : {slide: number}) => (
   <Container>
-    <GeographyMap/>
-    <ExperimentViz/>
+    <ExperimentViz slide={slide} />
   </Container>
 );
 
@@ -61,8 +64,6 @@ const Slide2 = () => (
     <Typography variant='body1'>This slide will container contains the background information about our story.</Typography>
   </Container>
 );
-
-
 
 const steps = [
   'Sugar-Sweetened Beverage Consumption',
@@ -78,17 +79,17 @@ const steps = [
 // Main Layout
 function Layout() {
 
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(0);
 
   const decrementStep = () => { setStep(prev => Math.max((prev - 1), 0)) };
   const incrementStep = () => { setStep(prev => Math.min((prev + 1), steps.length)) };
 
   const slides = [
-    <EmptySlide />, 
+    <Slide1 />, 
     <EmptySlide />, 
     <EmptySlide />, 
     <EmptySlide />,
-    <Slide1 slide={step - 4}/>,
+    <Slide5 slide={step - 4}/>,
   ]
 
   const stepLogic = (step: number) : number => {
@@ -101,17 +102,17 @@ function Layout() {
       <Grid container direction="column" spacing={0} style={{ height: "100vh" }}>
 
         {/* Main Content */}
-        <Grid item xs={10}>
+        <Grid item xs={9}>
           {/* <Typography>{steps[step] || 'End of Steps'}</Typography> */}
           { slides[stepLogic(step)] }
         </Grid>
 
         {/* Controls */}
-        <Grid item xs={2} padding={1} style={{ display: 'flex', alignItems: 'flex-end', width: '100%' }}>
+        <Grid item xs={3} padding={1} style={{ display: 'flex', alignItems: 'flex-end', width: '100%' }}>
           <Card variant='outlined' style={{ width: '100%' }}>
             {/* Stepper */}
             <CardContent>
-              <Stepper activeStep={step}>
+              <Stepper activeStep={step} alternativeLabel>
                 {steps.map((label) => (
                   <Step key={label}>
                     <StepLabel>{label}</StepLabel>
