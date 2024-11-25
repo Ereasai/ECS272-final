@@ -1,4 +1,4 @@
-import Example from './components/Example'
+import Example from './components/GeographyMap'
 import Notes from './components/Notes'
 import { NotesWithReducer, CountProvider } from './components/NotesWithReducer';
 import Grid from '@mui/material/Grid';
@@ -7,6 +7,7 @@ import { grey } from '@mui/material/colors';
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Container, CssBaseline, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { useState } from 'react';
 import ExperimentViz from './components/ExperimentViz';
+import GeographyMap from './components/GeographyMap';
 
 const theme = createTheme({
   palette: {
@@ -49,7 +50,8 @@ const EmptySlide = () => (
 
 const Slide1 = ({slide} : {slide: number}) => (
   <Container>
-    <ExperimentViz slide={slide} />
+    <GeographyMap/>
+    <ExperimentViz/>
   </Container>
 );
 
