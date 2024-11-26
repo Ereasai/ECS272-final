@@ -1,11 +1,8 @@
 import React from 'react'
 import { useEffect, useState, useRef } from 'react';
 import * as d3 from 'd3';
-import usStates from '../../data/us_states.json';
-import * as topojson from 'topojson-client';
 import { isEmpty } from 'lodash';
 import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
-import { FeatureCollection } from 'geojson';
 import { Bar, ComponentSize, Margin } from '../types';
 // A "extends" B means A inherits the properties and methods from B.
 interface DataBar{
@@ -55,10 +52,10 @@ export default function Example() {
     let chartContainer = d3.select('#bar-svg')
 
     const x = d3
-    .scaleLinear()
-    .domain(d3.extent(Ndata, d => d.year) as [number, number])
-    .range([margin.left, size.width - margin.right]);
-  
+        .scaleLinear()
+        .domain(d3.extent(Ndata, d => d.year) as [number, number])
+        .range([margin.left, size.width - margin.right]);
+
     const y = d3
         .scaleLinear()
         .domain([
@@ -70,7 +67,6 @@ export default function Example() {
         ])
         .range([size.height - margin.bottom, margin.top+30]);
     
-    // Line generators
     const lineRevenue = d3
         .line<DataBar>()
         .x(d => x(d.year))
@@ -80,7 +76,7 @@ export default function Example() {
         .line<DataBar>()
         .x(d => x(d.year))
         .y(d => y(d.value));
-    // Tooltip
+ 
     const tooltip = d3
         .select("body")
         .append("div")
@@ -98,16 +94,37 @@ export default function Example() {
         .style("font-size", "20px")
         .style("font-weight", "bold")
         .text("Global revenue and financial results of the Coca-Cola Company(in million U.S. dollars)"); 
-    // Draw axes
+
     chartContainer
         .append("g")
         .attr("transform", `translate(0,${size.height - margin.bottom})`)
-        .call(d3.axisBottom(x).tickFormat(d3.format("d")));
+        .call(d3.axisBottom(x).tickFormat(d3.format("d")))
+        .selectAll('text')
+        .style('font-size', '11px'); 
+    
+    chartContainer.append('text')
+        .attr('x', margin.left + size.width / 2) 
+        .attr('y', size.height-40) 
+        .attr('text-anchor', 'middle')
+        .style('font-size', '14px')
+        .style('font-weight', 'bold')
+        .text('Year');
     
     chartContainer
         .append("g")
         .attr("transform", `translate(${margin.left},0)`)
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y))
+        .selectAll('text')
+        .style('font-size', '11px'); 
+    
+    chartContainer.append('text')
+        .attr('x', -(margin.top + size.height / 2 -50)) 
+        .attr('y', margin.left/4-5) 
+        .attr('transform', 'rotate(-90)') 
+        .attr('text-anchor', 'middle')
+        .style('font-size', '14px')
+        .style('font-weight', 'bold')
+        .text('Benefit(in million U.S. dollars)');
     
     const revenuePath = chartContainer
         .append("path")
@@ -196,25 +213,26 @@ export default function Example() {
         })
         .on("mouseout", () => tooltip.style("visibility", "hidden"));
     
-    // Add legend
+    const legendHeight=240;
+    
     chartContainer
         .append("rect")
         .attr("x", size.width - margin.right - 170)
-        .attr("y", margin.top + 158)
+        .attr("y", margin.top + legendHeight)
         .attr("width", 12)
         .attr("height", 12)
         .attr("fill", "steelblue");
     chartContainer
         .append("text")
         .attr("x", size.width - margin.right - 150)
-        .attr("y", margin.top +170)
+        .attr("y", margin.top +legendHeight+12)
         .attr("fill", "steelblue")
         .text("Net Operating Revenue");
     
     chartContainer
         .append("rect")
         .attr("x", size.width - margin.right - 170)
-        .attr("y", margin.top + 183)
+        .attr("y", margin.top + legendHeight+25)
         .attr("width", 12)
         .attr("height", 12)
         .attr("fill", "orange");
@@ -222,14 +240,14 @@ export default function Example() {
     chartContainer
         .append("text")
         .attr("x", size.width - margin.right - 150)
-        .attr("y", margin.top + 195)
+        .attr("y", margin.top + legendHeight+37)
         .attr("fill", "orange")
         .text("Operating Income");
     }
 
   return (
     <>
-      <div ref={barRef} className='chart-container'>
+      <div ref={barRef} className='chart-container' style={{marginLeft:'20px',marginRight:'20px',marginTop:'20px'}}>
         <svg id='bar-svg' width='100%' height='100%'></svg>
       </div>
     </>

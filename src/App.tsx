@@ -8,7 +8,9 @@ import { Box, Button, Card, CardActionArea, CardActions, CardContent, Container,
 import { useState } from 'react';
 import ExperimentViz from './components/ExperimentViz';
 import GeographyMap from './components/GeographyMap';
+import ResidentsChart from './components/ResidentsChart';
 import RevenueChart from './components/RevenueChart';
+import ContentChart from './components/ContentChart';
 
 const theme = createTheme({
   palette: {
@@ -52,14 +54,22 @@ const EmptySlide = () => (
 const Slide1 = () => (
   <GeographyMap />
 )
-
+const Slide2 = () => (
+  <ResidentsChart />
+)
+const Slide3 = () => (
+  <RevenueChart/>
+)
+const Slide4 = () => (
+  <ContentChart/>
+)
 const Slide5 = ({slide} : {slide: number}) => (
   <Container>
     <ExperimentViz slide={slide} />
   </Container>
 );
 
-const Slide2 = () => (
+const Slide7 = () => (
   <Container>
     <Typography variant='h1'>Background</Typography>
     <Typography variant='body1'>This slide will container contains the background information about our story.</Typography>
@@ -87,9 +97,9 @@ function Layout() {
 
   const slides = [
     <Slide1 />, 
-    <EmptySlide />, 
-    <EmptySlide />, 
-    <EmptySlide />,
+    <Slide2 />, 
+    <Slide3 />,
+    <Slide4 />,
     <Slide5 slide={step - 4}/>,
   ]
 

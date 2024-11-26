@@ -54,30 +54,32 @@ export default function Example() {
   }, [data, size])
 
   function initChart() {
-    // select the svg tag so that we can insert(render) elements, i.e., draw the chart, within it.
     let chartContainer = d3.select('#bar-svg')
-
 
     const title= chartContainer.append('g')
       .append("text")
       .attr("x", size.width / 2) 
-      .attr("y", 30) 
+      .attr("y", 20) 
       .attr("text-anchor", "middle")
       .style("font-size", "20px")
       .style("font-weight", "bold")
       .text("Daily Sugary Beverage Consumption in US"); 
 
-    
-    
-    // Define a color scale
     const color = d3.scaleThreshold<number, string>()
       .domain([30, 40, 50, 60, 70, 80])
       .range(d3.schemeBlues[6]);
     
-    // Define a geographical path generator
     const path = d3.geoPath();   
     if (!states || !states.features) return;
-    // Draw the map
+
+    const tooltip = d3
+      .select("body")
+      .append("div")
+      .style("position", "absolute")
+      .style("background", "lightgray")
+      .style("padding", "5px")
+      .style("border-radius", "5px")
+      .style("visibility", "hidden");
     const GeographyMap= chartContainer.append("g")
       .selectAll("path")
       .data(states.features) 
@@ -85,29 +87,44 @@ export default function Example() {
       .attr("d", path)
       .attr("fill", d =>{
         const stateName = d.properties?.name;
-        const value = lookup.get(stateName) || 0; // Get value from the lookup
+        const value = lookup.get(stateName) || 0; 
         return color(value);
       })
       .attr("stroke", "#fff")
       .attr("stroke-width", 0.5)
-      .append("title")
-      .text(d =>{
+      .on("mouseover", (event, d) => {
         const stateName = d.properties?.name;
         const value = lookup.get(stateName) || "No data";
-        return `${stateName}: ${value}`;
+        tooltip.style("visibility", "visible")
+          .text(`${stateName}: ${value}`);
+      })
+      .on("mousemove", event => {
+        tooltip
+          .style("top", `${event.pageY + 10}px`)
+          .style("left", `${event.pageX + 10}px`);
+      })
+      .on("mouseout", () => {
+        tooltip.style("visibility", "hidden");
       });
+      // .append("title")
+      // .text(d =>{
+      //   const stateName = d.properties?.name;
+      //   const value = lookup.get(stateName) || "No data";
+      //   return `${stateName}: ${value}`;
+      // });
+    
 
     const legend = chartContainer.append("g")
-      .attr("transform", `translate(20,${size.height - 120})`); // Adjust position
+      .attr("transform", `translate(20,${size.height - 60})`); 
 
     const legendScale = d3.scaleLinear()
       .domain(color.domain())
-      .range([0, 200]); // Width of the legend
+      .range([0, 200]); 
 
     const legendAxis = d3.axisBottom(legendScale)
       .tickSize(13)
       .tickValues(color.domain())
-      .tickFormat(d3.format(".2f")); // Format the ticks
+      .tickFormat(d3.format(".2f")); 
 
     legend.selectAll("rect")
       .data(color.range().map((d, i) => {
@@ -130,7 +147,7 @@ export default function Example() {
 
   return (
     <>
-      <div ref={barRef} className='chart-container'>
+      <div ref={barRef} className='chart-container' style={{marginLeft:'10px',marginTop:'15px'}}>
         <svg id='bar-svg' width='100%' height='100%'></svg>
       </div>
     </>
