@@ -51,8 +51,20 @@ const EmptySlide = () => (
   <div>Empty Slide</div>
 )
 
+
+
 const Slide1 = () => (
-  <GeographyMap />
+  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
+     <Grid item xs={8} padding={1} style={{width: '100%', height: '100%' }}>
+        <GeographyMap />
+     </Grid>
+     <Grid item xs={4} padding={1} style={{width: '100%' }}>
+        <Typography variant='h3'>
+          hello <span style={{color: 'red'}}>bold</span> text
+        </Typography>
+        {/* <p>hello</p> */}
+     </Grid>
+  </Grid>
 )
 const Slide2 = () => (
   <ResidentsChart />
@@ -64,7 +76,7 @@ const Slide4 = () => (
   <ContentChart/>
 )
 const Slide5 = ({slide} : {slide: number}) => (
-  <Container>
+  <Container style={{height: '100%'}}>
     <ExperimentViz slide={slide} />
   </Container>
 );
