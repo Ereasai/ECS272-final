@@ -57,13 +57,13 @@ const CoverSlide = () => (
     <Typography variant='h4'>
       Team 15, Gunwoo Kim, Zhuoli Huang
     </Typography>
-
   </Container>
 );
 
 const BackgroundSlide = () => (
   <Container>
     <Typography variant='h3'>Background</Typography>
+    <br/>
     <Typography variant='h4'>What are sugar-sweetened beverages?</Typography>
     <Typography variant='body1'><b>Sugar-sweetened beverages</b> are any liquids that 
       are sweetened with various forms of added sugars like brown sugar, corn 
@@ -75,14 +75,61 @@ const BackgroundSlide = () => (
     </Typography>
 
     <br/>
-
-    <Typography variant='h5'>Among the different food categories, we consume 24% of sugar from sugar-sweetened beverages.</Typography>
-
+    <Typography variant='h4'>The major sources of added sugar</Typography>
+    <ul>
+      <li>
+        <Typography variant="h5">
+          <span style={{color:'red'}}><b>Sugar-sweetened beverages - 24 %</b></span>
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Desserts and sweet snacks - 19%
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Other sources - 19% 
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Coffee/tea - 11%
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Candy - 9%
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Sandwiches - 7%
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Breakfast cereals and bars - 7%
+        </Typography>
+      </li>
+      <li>
+        <Typography variant="h5">
+          Higher fat milk and sweetened yogurt - 4%
+        </Typography>
+      </li>
+    </ul>
+    <br/>
+    <Typography variant='h4'>The recommendation on added sugar</Typography>
+    <Typography variant='body1'><b>Men</b> should consume no more than <span style={{color:'red'}}>9 teaspoons (36 grams or 150 calories)</span> of added sugar per day.</Typography>
+    <Typography variant='body1'><b>Women</b> should consume no more than <span style={{color:'red'}}>6 teaspoons (25 grams or 100 calories)</span> per day. </Typography>
   </Container>
 );
 
 const ConclusionSlide = () => (
-  <div></div>
+  <Container>
+      <Typography variant='h3'>Conclusion</Typography>
+      <Typography variant='body1'>As we showed in the experiment before, 'evil' companies like Coca-Cola will attract consumers to eat more sugar by using the typical methods.  But for our health, we should learn about this and reduce sugar.</Typography>
+  </Container>
 );
 
 
@@ -140,12 +187,12 @@ const Slide5 = ({slide} : {slide: number}) => (
   </Container>
 );
 
-const Slide7 = () => (
-  <Container>
-    <Typography variant='h1'>Background</Typography>
-    <Typography variant='body1'>This slide will container contains the background information about our story.</Typography>
-  </Container>
-);
+// const Slide7 = () => (
+//   <Container>
+//     <Typography variant='h1'>Background</Typography>
+//     <Typography variant='body1'>This slide will container contains the background information about our story.</Typography>
+//   </Container>
+// );
 
 const steps = [
   'Cover',
@@ -157,7 +204,7 @@ const steps = [
   'Experiment: Background',
   'Experiment: Result',
   'Experiment: Histogram',
-  // 'Conclusion'
+  'Conclusion'
 ];
 
 // Main Layout
@@ -176,10 +223,11 @@ function Layout() {
     <Slide3 />,
     <Slide4 />,
     <Slide5 slide={step - 4}/>,
+    <ConclusionSlide/>
   ]
 
   const stepLogic = (step: number) : number => {
-    if (step > 3) return 4;
+    if (step > 5) return 6;
     return step;
   };
 
