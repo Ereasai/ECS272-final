@@ -6,9 +6,27 @@ import { ComponentSize, Margin } from '../types';
 import { useResizeObserver, useDebounceCallback } from 'usehooks-ts';
 import { isEmpty, update } from 'lodash';
 
+const Tooltip = ({ id }: {id: string}) => {
+  return (
+    <div id={id}
+      style={{
+        position: 'absolute',
+        display: 'none',
+        pointerEvents: 'none',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        color: 'white',
+        padding: '5px',
+        borderRadius: '3px',
+        fontSize: '0.8rem'
+      }}
+    />
+  )
+}
+
 export default function ExperimentViz({ slide }: { slide: number }) {
 
   const chartRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const [size, setSize] = useState<ComponentSize>({ width: 0, height: 0 });
   const margin: Margin = { top: 100, right: 20, bottom: 100, left: 100 };
   const onResize = useDebounceCallback((size: ComponentSize) => setSize(size), 0)
@@ -271,7 +289,37 @@ export default function ExperimentViz({ slide }: { slide: number }) {
         )
       );
 
-    combined.transition().duration(3000)
+    const tooltip = d3.select('#tooltip');
+
+    combined
+      .on('mouseout', function () {
+        tooltip.style('display', 'none');
+      })
+      .on('mouseover', () => { 
+        tooltip.style('display', 'block');
+      })
+      .on('mousemove', function (event, d) {
+        const [x, y] = d3.pointer(event);
+        const svgRect = svgRef.current?.getBoundingClientRect();
+
+        if (!svgRect) return
+
+        console.log(svgRect)
+
+        // const isSelected = selectedCountries.includes(d.country_code)
+
+        tooltip
+          .style('left', `${ x + 30 }px`)
+          .style('top', `${ y - 110 }px`)
+          .html(`
+            <strong>Age:</strong> ${d.age}<br/>
+            <strong>Sex:</strong> ${d.sex}<br/>
+            <strong>Ethnicity:</strong> ${d.ethnicity}<br/>
+            <strong>Failed comprehension check:</strong> ${d.failed_comprehension_check}<br/>
+            <strong>ID:</strong> ${d.id}<br/>`
+          );
+      })
+      .transition().duration(3000)
       .attr('cx', (d, i) => {
         if (slide === 0) return xDemographic(i % cols);
         if (slide === 1) return xSetup[d.condition](d.conditionIndex % (cols));
@@ -459,8 +507,8 @@ export default function ExperimentViz({ slide }: { slide: number }) {
 
   return (
     <div ref={chartRef} style={{ height: '100%' }}>
-      <div id='tooltip'></div>
-      <svg id='chart-svg' width='100%' height='100%'></svg>
+      <Tooltip id='tooltip' />
+      <svg id='chart-svg' width='100%' height='100%' ref={svgRef}></svg>
     </div>
   )
 

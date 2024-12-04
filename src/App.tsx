@@ -34,6 +34,7 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
 });
+
 // @ts-ignore
 function DivFilling({ color, children }) {
   const divStyle = {
@@ -46,7 +47,7 @@ function DivFilling({ color, children }) {
 };
 
 
-// Slides
+/* Slides */
 const EmptySlide = () => (
   <div>Empty Slide</div>
 )
@@ -185,7 +186,6 @@ const Slide5 = ({ slide }: { slide: number }) => (
   <Container style={{ height: '100%', position: 'relative' }}>
 
     <div style={{ width: '40%', height: '100%', position: 'absolute', top: 0, right: 0, marginTop: 100 }}>
-
       <Box width='100%' height='100%' hidden={slide !== 0}>
         <Typography variant='body1'>
           In this study, the researchers aim to study different strategies to influence sugary drink consumption.
@@ -210,7 +210,7 @@ const Slide5 = ({ slide }: { slide: number }) => (
         </ul>
 
         <Typography variant='body1'>
-          So this is a total of 4 conditions.
+          So this is a total of 4 conditions (Size Options X Serving Options = 4 Combinations).
         </Typography>
 
       </Box>
@@ -225,24 +225,17 @@ const Slide5 = ({ slide }: { slide: number }) => (
           <li>self-served, typical</li>
           <li>self-served, bundled</li>
         </ol>
+        <Typography variant='body1'>
+          On the following slide, there will be a histogram of calories consumed 
+          (i.e. the amount of sugary drinks that the participants consumed).
+        </Typography>
 
       </Box>
-
-
     </div>
-
-
 
     <ExperimentViz slide={slide} />
   </Container>
 );
-
-// const Slide7 = () => (
-//   <Container>
-//     <Typography variant='h1'>Background</Typography>
-//     <Typography variant='body1'>This slide will container contains the background information about our story.</Typography>
-//   </Container>
-// );
 
 const steps = [
   'Cover',
@@ -273,11 +266,13 @@ function Layout() {
     <Slide3 />,
     <Slide4 />,
     <Slide5 slide={step - 6} />,
+    <ConclusionSlide />
   ]
 
   const stepLogic = (step: number): number => {
-    if (step > 5) return 6;
-    return step;
+    if (step <= 5) return step;
+    if (step > 5 && step < 9) return 6;
+    return 7;
   };
 
   return (
