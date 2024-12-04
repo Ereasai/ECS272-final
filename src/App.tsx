@@ -52,16 +52,52 @@ const EmptySlide = () => (
 )
 
 const Slide1 = () => (
-  <GeographyMap />
+  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
+     <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
+        <GeographyMap />
+     </Grid>
+     <Grid item xs={2} padding={6} style={{width: '100%'}}>
+        <Typography variant='h5'>
+          The map shows that <span style={{color:'red',fontSize:'56px'}}><b>MANY</b></span> adults consume sugary beverage at once everyday
+        </Typography>
+     </Grid>
+  </Grid>
 )
 const Slide2 = () => (
-  <ResidentsChart />
+  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
+      <ResidentsChart />
+    </Grid>
+    <Grid item xs={2} padding={6} style={{width: '100%'}}>
+      <Typography variant='h5'>
+        The situation of California residents consume Sugar-Sweetened Beverage for different groups. <b>From 0.4 to 3.1</b>.
+      </Typography>
+    </Grid>
+  </Grid>
 )
 const Slide3 = () => (
-  <RevenueChart/>
+  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
+      <RevenueChart/>
+    </Grid>
+    <Grid item xs={2} padding={5} style={{width: '100%'}}>
+      <Typography variant='h5'>
+        From the growing Net Operating Revenue and Operating Income, We can assume that <b style={{color:'red'}}>sales</b> of sugar-sweetened beverages, such as Coca-Cola, are also <b style={{color:'red'}}>on the rise</b>
+      </Typography>
+    </Grid>
+  </Grid>
 )
 const Slide4 = () => (
-  <ContentChart/>
+  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
+      <ContentChart/>
+    </Grid>
+    <Grid item xs={2} padding={5} style={{width: '100%'}}>
+      <Typography variant='h5'>
+        About the calories and sugar content of Coca-Cola's common sugar-sweetened beverage products
+      </Typography>
+    </Grid>
+  </Grid>
 )
 const Slide5 = ({slide} : {slide: number}) => (
   <Container>

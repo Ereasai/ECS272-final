@@ -20,7 +20,7 @@ export default function Example() {
   const [states,setStates]=useState<FeatureCollection | null>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<ComponentSize>({ width: 0, height: 0 });
-  const margin: Margin = { top: 40, right: 20, bottom: 80, left: 60 };
+  const margin: Margin = { top: 40, right: 20, bottom: 80, left:150 };
   const onResize = useDebounceCallback((size: ComponentSize) => setSize(size), 200)
 
   useResizeObserver({ ref: barRef, onResize });
@@ -58,12 +58,21 @@ export default function Example() {
 
     const title= chartContainer.append('g')
       .append("text")
-      .attr("x", size.width / 2) 
+      .attr("x", size.width / 2-120) 
       .attr("y", 20) 
       .attr("text-anchor", "middle")
       .style("font-size", "20px")
       .style("font-weight", "bold")
-      .text("Daily Sugary Beverage Consumption in US"); 
+      .text("The percentage of adults comsuming daily sugary beverage at once in the US"); 
+
+    const subtitle= chartContainer.append('g')
+      .append("text")
+      .attr("x", size.width / 2-120) 
+      .attr("y", 45) 
+      .attr("text-anchor", "middle")
+      .style("font-size", "20px")
+      .style("font-weight", "bold")
+      .text("between 2010 and 2015"); 
 
     const color = d3.scaleThreshold<number, string>()
       .domain([30, 40, 50, 60, 70, 80])
@@ -115,7 +124,7 @@ export default function Example() {
     
 
     const legend = chartContainer.append("g")
-      .attr("transform", `translate(20,${size.height - 60})`); 
+      .attr("transform", `translate(20,${size.height - 40})`); 
 
     const legendScale = d3.scaleLinear()
       .domain(color.domain())
@@ -147,7 +156,7 @@ export default function Example() {
 
   return (
     <>
-      <div ref={barRef} className='chart-container' style={{marginLeft:'10px',marginTop:'15px'}}>
+      <div ref={barRef} className='chart-container' style={{marginLeft:'200px',marginTop:'15px'}}>
         <svg id='bar-svg' width='100%' height='100%'></svg>
       </div>
     </>
