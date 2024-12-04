@@ -51,6 +51,41 @@ const EmptySlide = () => (
   <div>Empty Slide</div>
 )
 
+const CoverSlide = () => (
+  <Container style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+    <Typography variant='h2' style={{color: theme.palette.primary.main}}><b>Sugar Consumption Behavior</b></Typography>
+    <Typography variant='h4'>
+      Team 15, Gunwoo Kim, Zhuoli Huang
+    </Typography>
+
+  </Container>
+);
+
+const BackgroundSlide = () => (
+  <Container>
+    <Typography variant='h3'>Background</Typography>
+    <Typography variant='h4'>What are sugar-sweetened beverages?</Typography>
+    <Typography variant='body1'><b>Sugar-sweetened beverages</b> are any liquids that 
+      are sweetened with various forms of added sugars like brown sugar, corn 
+      sweetener, corn syrup, dextrose, fructose, glucose, high-fructose corn 
+      syrup, honey, lactose, malt syrup, maltose, molasses, raw sugar, and 
+      sucrose. Examples of SSBs include, but are not limited to, regular soda 
+      (not sugar-free), fruit drinks, sports drinks, energy drinks, sweetened 
+      waters, and coffee and tea beverages with added sugars.
+    </Typography>
+
+    <br/>
+
+    <Typography variant='h5'>Among the different food categories, we consume 24% of sugar from sugar-sweetened beverages.</Typography>
+
+  </Container>
+);
+
+const ConclusionSlide = () => (
+  <div></div>
+);
+
+
 const Slide1 = () => (
   <Grid container direction='row' style={{width: '100%', height: '100%' }}>
      <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
@@ -113,6 +148,8 @@ const Slide7 = () => (
 );
 
 const steps = [
+  'Cover',
+  'Background',
   'Sugar-Sweetened Beverage Consumption',
   'Sugar-Sweetened Beverage Consumption in California Residents',
   'Revenue of Coca-Cola Company',
@@ -132,6 +169,8 @@ function Layout() {
   const incrementStep = () => { setStep(prev => Math.min((prev + 1), steps.length)) };
 
   const slides = [
+    <CoverSlide />,
+    <BackgroundSlide />,
     <Slide1 />, 
     <Slide2 />, 
     <Slide3 />,
