@@ -52,8 +52,8 @@ const EmptySlide = () => (
 )
 
 const CoverSlide = () => (
-  <Container style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
-    <Typography variant='h2' style={{color: theme.palette.primary.main}}><b>Sugar Consumption Behavior</b></Typography>
+  <Container style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+    <Typography variant='h2' style={{ color: theme.palette.primary.main }}><b>Sugar Consumption Behavior</b></Typography>
     <Typography variant='h4'>
       Team 15, Gunwoo Kim, Zhuoli Huang
     </Typography>
@@ -65,16 +65,16 @@ const BackgroundSlide = () => (
   <Container>
     <Typography variant='h3'>Background</Typography>
     <Typography variant='h4'>What are sugar-sweetened beverages?</Typography>
-    <Typography variant='body1'><b>Sugar-sweetened beverages</b> are any liquids that 
-      are sweetened with various forms of added sugars like brown sugar, corn 
-      sweetener, corn syrup, dextrose, fructose, glucose, high-fructose corn 
-      syrup, honey, lactose, malt syrup, maltose, molasses, raw sugar, and 
-      sucrose. Examples of SSBs include, but are not limited to, regular soda 
-      (not sugar-free), fruit drinks, sports drinks, energy drinks, sweetened 
+    <Typography variant='body1'><b>Sugar-sweetened beverages</b> are any liquids that
+      are sweetened with various forms of added sugars like brown sugar, corn
+      sweetener, corn syrup, dextrose, fructose, glucose, high-fructose corn
+      syrup, honey, lactose, malt syrup, maltose, molasses, raw sugar, and
+      sucrose. Examples of SSBs include, but are not limited to, regular soda
+      (not sugar-free), fruit drinks, sports drinks, energy drinks, sweetened
       waters, and coffee and tea beverages with added sugars.
     </Typography>
 
-    <br/>
+    <br />
 
     <Typography variant='h5'>Among the different food categories, we consume 24% of sugar from sugar-sweetened beverages.</Typography>
 
@@ -87,23 +87,23 @@ const ConclusionSlide = () => (
 
 
 const Slide1 = () => (
-  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
-     <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
-        <GeographyMap />
-     </Grid>
-     <Grid item xs={2} padding={6} style={{width: '100%'}}>
-        <Typography variant='h5'>
-          The map shows that <span style={{color:'red',fontSize:'56px'}}><b>MANY</b></span> adults consume sugary beverage at once everyday
-        </Typography>
-     </Grid>
+  <Grid container direction='row' style={{ width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{ width: '100%', height: '100%' }}>
+      <GeographyMap />
+    </Grid>
+    <Grid item xs={2} padding={6} style={{ width: '100%' }}>
+      <Typography variant='h5'>
+        The map shows that <span style={{ color: 'red', fontSize: '56px' }}><b>MANY</b></span> adults consume sugary beverage at once everyday
+      </Typography>
+    </Grid>
   </Grid>
 )
 const Slide2 = () => (
-  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
-    <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
+  <Grid container direction='row' style={{ width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{ width: '100%', height: '100%' }}>
       <ResidentsChart />
     </Grid>
-    <Grid item xs={2} padding={6} style={{width: '100%'}}>
+    <Grid item xs={2} padding={6} style={{ width: '100%' }}>
       <Typography variant='h5'>
         The situation of California residents consume Sugar-Sweetened Beverage for different groups. <b>From 0.4 to 3.1</b>.
       </Typography>
@@ -111,31 +111,81 @@ const Slide2 = () => (
   </Grid>
 )
 const Slide3 = () => (
-  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
-    <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
-      <RevenueChart/>
+  <Grid container direction='row' style={{ width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{ width: '100%', height: '100%' }}>
+      <RevenueChart />
     </Grid>
-    <Grid item xs={2} padding={5} style={{width: '100%'}}>
+    <Grid item xs={2} padding={5} style={{ width: '100%' }}>
       <Typography variant='h5'>
-        From the growing Net Operating Revenue and Operating Income, We can assume that <b style={{color:'red'}}>sales</b> of sugar-sweetened beverages, such as Coca-Cola, are also <b style={{color:'red'}}>on the rise</b>
+        From the growing Net Operating Revenue and Operating Income, We can assume that <b style={{ color: 'red' }}>sales</b> of sugar-sweetened beverages, such as Coca-Cola, are also <b style={{ color: 'red' }}>on the rise</b>
       </Typography>
     </Grid>
   </Grid>
 )
 const Slide4 = () => (
-  <Grid container direction='row' style={{width: '100%', height: '100%' }}>
-    <Grid item xs={10} padding={1} style={{width: '100%', height: '100%' }}>
-      <ContentChart/>
+  <Grid container direction='row' style={{ width: '100%', height: '100%' }}>
+    <Grid item xs={10} padding={1} style={{ width: '100%', height: '100%' }}>
+      <ContentChart />
     </Grid>
-    <Grid item xs={2} padding={5} style={{width: '100%'}}>
+    <Grid item xs={2} padding={5} style={{ width: '100%' }}>
       <Typography variant='h5'>
         About the calories and sugar content of Coca-Cola's common sugar-sweetened beverage products
       </Typography>
     </Grid>
   </Grid>
 )
-const Slide5 = ({slide} : {slide: number}) => (
-  <Container style={{height: '100%'}}>
+const Slide5 = ({ slide }: { slide: number }) => (
+  <Container style={{ height: '100%', position: 'relative' }}>
+
+    <div style={{ width: '40%', height: '100%', position: 'absolute', top: 0, right: 0, marginTop: 100 }}>
+
+      <Box width='100%' height='100%' hidden={slide !== 0}>
+        <Typography variant='body1'>
+          In this study, the researchers aim to study different strategies to influence sugary drink consumption.
+          They tested two variables which were:
+        </Typography>
+
+        <ul>
+          <li>
+            Size options:
+            <ul>
+              <li>Typical: 16oz (small), 24oz (large)</li>
+              <li>Bundled: 16oz (small), 2 x 12oz (bundled)</li>
+            </ul>
+          </li>
+          <li>
+            Serving options:
+            <ul>
+              <li>Waiter-served</li>
+              <li>Self-served</li>
+            </ul>
+          </li>
+        </ul>
+
+        <Typography variant='body1'>
+          So this is a total of 4 conditions.
+        </Typography>
+
+      </Box>
+
+      <Box width='100%' height='100%' hidden={slide !== 1}>
+        <Typography variant='body1'>
+          The participants were divided into 4 groups:
+        </Typography>
+        <ol>
+          <li>waiter-served, typical</li>
+          <li>waiter-served, bundled</li>
+          <li>self-served, typical</li>
+          <li>self-served, bundled</li>
+        </ol>
+
+      </Box>
+
+
+    </div>
+
+
+
     <ExperimentViz slide={slide} />
   </Container>
 );
@@ -157,7 +207,7 @@ const steps = [
   'Experiment: Background',
   'Experiment: Result',
   'Experiment: Histogram',
-  // 'Conclusion'
+  'Conclusion'
 ];
 
 // Main Layout
@@ -171,52 +221,52 @@ function Layout() {
   const slides = [
     <CoverSlide />,
     <BackgroundSlide />,
-    <Slide1 />, 
-    <Slide2 />, 
+    <Slide1 />,
+    <Slide2 />,
     <Slide3 />,
     <Slide4 />,
-    <Slide5 slide={step - 4}/>,
+    <Slide5 slide={step - 6} />,
   ]
 
-  const stepLogic = (step: number) : number => {
-    if (step > 3) return 4;
+  const stepLogic = (step: number): number => {
+    if (step > 5) return 6;
     return step;
   };
 
   return (
 
-      <Grid container direction="column" spacing={0} style={{ height: "100vh" }}>
+    <Grid container direction="column" spacing={0} style={{ height: "100vh" }}>
 
-        {/* Main Content */}
-        <Grid item xs={9}>
-          {/* <Typography>{steps[step] || 'End of Steps'}</Typography> */}
-          { slides[stepLogic(step)] }
-        </Grid>
-
-        {/* Controls */}
-        <Grid item xs={3} padding={1} style={{ display: 'flex', alignItems: 'flex-end', width: '100%' }}>
-          <Card variant='outlined' style={{ width: '100%' }}>
-            {/* Stepper */}
-            <CardContent>
-              <Stepper activeStep={step} alternativeLabel>
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-            </CardContent>
-
-            {/* Buttons */}
-            <CardActions>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <Button size="small" onClick={decrementStep}>Prev</Button>
-                <Button size="small" onClick={incrementStep}>Next</Button>
-              </Box>
-            </CardActions>
-          </Card>
-        </Grid>
+      {/* Main Content */}
+      <Grid item xs={9}>
+        {/* <Typography>{steps[step] || 'End of Steps'}</Typography> */}
+        {slides[stepLogic(step)]}
       </Grid>
+
+      {/* Controls */}
+      <Grid item xs={3} padding={1} style={{ display: 'flex', alignItems: 'flex-end', width: '100%' }}>
+        <Card variant='outlined' style={{ width: '100%' }}>
+          {/* Stepper */}
+          <CardContent>
+            <Stepper activeStep={step} alternativeLabel>
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </CardContent>
+
+          {/* Buttons */}
+          <CardActions>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+              <Button size="small" onClick={decrementStep}>Prev</Button>
+              <Button size="small" onClick={incrementStep}>Next</Button>
+            </Box>
+          </CardActions>
+        </Card>
+      </Grid>
+    </Grid>
 
   );
 }
