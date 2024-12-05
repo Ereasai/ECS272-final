@@ -129,6 +129,7 @@ const BackgroundSlide = () => (
 const ConclusionSlide = () => (
   <Container>
       <Typography variant='h3'>Conclusion</Typography>
+      <br/>
       <Typography variant='body1'>As we showed in the experiment before, 'evil' companies like Coca-Cola will attract consumers to eat more sugar by using the typical methods.  But for our health, we should learn about this and reduce sugar.</Typography>
   </Container>
 );
